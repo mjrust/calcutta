@@ -23,7 +23,6 @@ Schema = mongoose.Schema
 # NCAA teams
 Team = new Schema
   name: type: String, required: true
-  modified: type: Date, default: Date.now
 
 TeamModel = mongoose.model('Team', Team)
 
@@ -31,6 +30,7 @@ TeamModel = mongoose.model('Team', Team)
 Owner = new Schema
   name: type: String, required: true
   teams: [Team]
+  points: type: Number, default: 100
   modified: type: Date, default: Date.now
 
 OwnerModel = mongoose.model('Owner', Owner)
