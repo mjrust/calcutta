@@ -30,13 +30,13 @@ TeamModel = mongoose.model('Team', Team)
 # Calcutta owner
 Owner = new Schema
   name: type: String, required: true
-  teams: []
+  teams: [Team]
   modified: type: Date, default: Date.now
 
 OwnerModel = mongoose.model('Owner', Owner)
 
 app.get '/', (req, res) ->
-  res.render 'index', title: 'Calcutta', name: 'Matt Rust', layout: 'application', nav: 'nav'
+  res.render 'admin', title: 'Calcutta', name: 'Matt Rust', layout: 'application', nav: 'nav', form: 'form'
 
 app.get '/teams', (req, res) ->
   TeamModel.find (err, teams) ->

@@ -1,9 +1,8 @@
   <div class="masthead">
-    <h3 class="muted"><%= @title %></h3>
     <%- @partial(@nav)%>
   </div>
 
-
+  <h3 class="muted"><%= @title %></h3>
   <!-- Example row of columns -->
   <div class="row-fluid">
     <div class="span4">
@@ -23,8 +22,3 @@
     </div>
   </div>
 
-  <hr>
-
-  <div class="footer">
-    <p>&copy; calcutta.com 2013</p>
-  </div>

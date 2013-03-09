@@ -29,8 +29,15 @@
 
     <div class="container">
       <%- @body %>
-    </div> <!-- /container -->
+      
+      <hr>
 
+      <div class="footer">
+        <p>&copy; calcutta.com 2013</p>
+      </div>
+    </div> <!-- /container -->
+    
+    
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->

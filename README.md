@@ -16,7 +16,7 @@ curl -i -X GET http://localhost:3005/owner/name/Matt
 curl -i -X DELETE http://localhost:3005/owner/513800775d2b2cb4e6000001
 
 # Add a new owner:
-curl -i -X POST -H 'Content-Type: application/json' -d '{"name": "Mac", "teams": ["Norfolk State", "Creighton"]}' http://localhost:3005/owner/
+curl -i -X POST -H 'Content-Type: application/json' -d '{"name": "Rusty", "teams": [{"name":"Norfolk State"}, {"name":"Creighton"}]}' http://localhost:3005/owner/
 
 # Add a new team:
 curl -i -X POST -H 'Content-Type: application/json' -d '{"name": "Indiana"}' http://localhost:3005/team

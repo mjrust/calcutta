@@ -1,0 +1,40 @@
+  <div class="masthead">
+    <%- @partial(@nav)%>
+  </div>
+  <h3 class="muted"><%= @title %></h3>
+  <%- @partial(@form)%>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Created at</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><a href="/products/1">1</a></td>
+          <td>Driver</td>
+          <td>399.0</td>
+          <td>Sat, 09 Mar 2013 04:40:42 +0000</td>
+          <td>
+            <a href="/products/1/edit" class="btn btn-mini"><span class="translation_missing" title="translation missing: en.helpers.links.edit">Edit</span></a>
+            <a href="/products/1" class="btn btn-mini btn-danger" data-confirm="Are you sure?" data-method="delete" rel="nofollow">Delete</a>
+          </td>
+        </tr>
+        <tr>
+          <td><a href="/products/2">2</a></td>
+          <td>Rocketballz</td>
+          <td>350.0</td>
+          <td>Sat, 09 Mar 2013 04:41:13 +0000</td>
+          <td>
+            <a href="/products/2/edit" class="btn btn-mini"><span class="translation_missing" title="translation missing: en.helpers.links.edit">Edit</span></a>
+            <a href="/products/2" class="btn btn-mini btn-danger" data-confirm="Are you sure?" data-method="delete" rel="nofollow">Delete</a>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+<a href="/products/new" class="btn btn-primary">New</a>
