@@ -1,14 +1,18 @@
 require('coffee-script')
 
+# Load configurations
 express  = require "express"
 mongoose = require "mongoose"
 cons     = require "consolidate"
 partials = require "express-partials"
+team     = require "./routes/team"
+owner    = require "./routes/owner"
+app = express()
 
 # Database
 db = mongoose.connect('mongodb://localhost/calcutta')
-app = express()
 
+# App configurations
 app.configure () ->
   app.use express.logger('dev')  # 'default', 'short', 'tiny', 'dev'
   app.engine 'eco', cons.eco
@@ -18,132 +22,24 @@ app.configure () ->
   app.set 'views', __dirname + '/views'
   app.use express.bodyParser()
 
-Schema = mongoose.Schema
-
-# NCAA teams
-Team = new Schema
-  name: type: String, required: true
-
-TeamModel = mongoose.model('Team', Team)
-
-# Calcutta owner
-Owner = new Schema
-  name: type: String, required: true
-  teams: [Team]
-  points: type: Number, default: 100
-  modified: type: Date, default: Date.now
-
-OwnerModel = mongoose.model('Owner', Owner)
-
+# app.all '/admin/*', requireAuthentication
 app.get '/', (req, res) ->
-  res.render 'admin', title: 'Calcutta', name: 'Matt Rust', layout: 'application', nav: 'nav', form: 'form'
+  res.render 'index', title: 'Calcutta', name: 'Matt Rust', layout: 'application', nav: 'nav', form: 'form'
+app.get '/teams', team.index
+app.get '/team/:id', team.show
+app.get '/teams/new', team.new
+app.post '/teams/create', team.create
+app.get '/team/:id/edit', team.edit
+app.put '/team/:id', team.update
+app.del '/team/:id', team.destroy
 
-app.get '/teams', (req, res) ->
-  TeamModel.find (err, teams) ->
-    if !err
-      res.send teams
-    else
-      console.log err
-
-app.get '/team/:id', (req, res) ->
-  TeamModel.findById req.params.id, (err, team) ->
-    if !err
-      res.send team
-    else
-      console.log err
-
-app.post '/team', (req, res) ->
-  console.log "POST: "
-  console.log req.body
-  team = new TeamModel
-    name: req.body.name
-    owner: req.body.owner
-  team.save (err) ->
-    if !err
-      console.log "created"
-    else
-      console.log err
-  res.send team
-
-app.put '/team/:id', (req, res) ->
-  TeamModel.findById req.params.id, (err, team) ->
-    team.name = req.body.name
-    team.owner = req.body.owner
-    team.save (err) ->
-      if !err
-        console.log "updated"
-        res.send "Team with id: #{req.params.id} was updated\n\n"
-      else
-        console.log "error"
-        console.log err
-      res.send team
-
-app.del '/team/:id', (req, res) ->
-  TeamModel.findById req.params.id, (err, team) ->
-    team.remove (err) ->
-      if !err
-        console.log "removed"
-        res.send "Team with id: #{req.params.id} was deleted\n\n"
-      else
-        console.log err
-
-app.get '/owners', (req, res) ->
-  OwnerModel.find (err, owners) ->
-    if !err
-      res.send owners
-    else
-      console.log err
-
-app.get '/owner/:id', (req, res) ->
-  OwnerModel.findById req.params.id, (err, owner) ->
-    if !err
-      res.send owner
-    else
-      console.log err
-      
-app.get '/owner/name/:name', (req, res) ->
-  OwnerModel.find name: req.params.name, (err, owner) ->
-    if !err
-      res.send owner
-    else
-      console.log err
-
-app.post '/owner', (req, res) ->
-  console.log "POST: "
-  console.log req.body
-  owner = new OwnerModel
-    name: req.body.name
-  for team in req.body.teams
-    owner.teams.push team
-  owner.save (err) ->
-    if !err
-      console.log "created"
-    else
-      console.log err
-  res.send owner
-
-app.put '/owner/:id', (req, res) ->
-  OwnerModel.findById req.params.id, (err, owner) ->
-    owner.name = req.body.name
-    for team in req.body.teams
-      owner.teams.push team
-    owner.save (err) ->
-      if !err
-        console.log "updated"
-        res.send "Owner with id: #{req.params.id} was updated\n\n"
-      else
-        console.log "error"
-        console.log err
-      res.send owner
-
-app.del '/owner/:id', (req, res) ->
-  OwnerModel.findById req.params.id, (err, owner) ->
-    owner.remove (err) ->
-      if !err
-        console.log "removed"
-        res.send "Owner with id: #{req.params.id} was deleted\n\n"
-      else
-        console.log err
+app.get '/owners', owner.index
+app.get '/owner/:id', owner.show  
+app.get '/owner/name/:name', owner.name
+app.post '/owner', owner.new
+app.get '/owner/:id/edit', owner.edit
+app.put '/owner/:id', owner.update
+app.del '/owner/:id', owner.destroy
 
 
 app.listen 3005

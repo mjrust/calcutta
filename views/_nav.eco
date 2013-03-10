@@ -13,9 +13,9 @@
         <!-- .nav, .navbar-search, .navbar-form, etc -->
         <ul class="nav">
           <li class="active"><a href="#">Home</a></li>
-          <li><a href="#">The Field</a></li>
-          <li><a href="#">Owners</a></li>
-          <li><a href="#">Admin</a></li>
+          <li><a href="/teams">The Field</a></li>
+          <li><a href="/owners">Owners</a></li>
+          <li><a href="/admin">Admin</a></li>
         </ul>
       </div>
     </div>

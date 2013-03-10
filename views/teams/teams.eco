@@ -1,0 +1,33 @@
+  <div class="masthead">
+    <%- @partial(@nav)%>
+  </div>
+
+  <h3 class="muted"><%= @title %></h3>
+  
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Team</th>
+        <th>Region</th>
+        <th>Seed</th>
+        <th>Purchase Price</th>
+        <th>Owner</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for team in @teams: %>
+        <tr>
+          <td><a href="/team/<%= team._id %>"><%- team.name %></a></td>
+          <td><%- team.region %></td>
+          <td><%- team.seed %></td>
+          <td><%- team.price %></td>
+          <td><%- team.owner %></td>
+          <td>
+            <a href="/team/<%= team._id %>/edit" class="btn btn-mini">Edit</a>
+            <a href="/team/<%= team._id %>" class="btn btn-mini btn-danger" data-confirm="Are you sure?" data-method="delete" rel="nofollow">Delete</a>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
