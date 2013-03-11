@@ -4,7 +4,8 @@
 
   <h3 class="muted"><%= @title %></h3>
 
-  <form action="/teams/update" class="form-horizontal" id="new_team" method="post">
+  <form action="/teams/<%= @team._id %>" class="form-horizontal" id="new_team" method="post">
+    <input type="hidden" name="_method" value="put">
     <div class="control-group">
       <label class="control-label" for="name">Team Name</label>
       <div class="controls">
@@ -30,7 +31,11 @@
       <div class="controls">
         <select id="seed" name="seed">
           <% for seed in @seeds: %>
-            <option><%= seed %></option>
+            <% if seed == @team.seed: %>
+              <option selected><%= @team.seed %></option>
+            <% else: %>
+              <option><%= seed %></option>
+            <% end %>
           <% end %>
         </select>
       </div>
@@ -38,13 +43,13 @@
     <div class="control-group">
       <label class="control-label" for="price">Price</label>
       <div class="controls">
-        <input class="text_field" id="price" name="price" size="30" type="text" value="" />
+        <input class="text_field" id="price" name="price" size="30" type="text" value="<%= @team.price %>" />
       </div>
     </div>
     <div class="control-group">
       <label class="control-label" for="owner">Owner</label>
       <div class="controls">
-        <input class="text_field" id="owner" name="owner" size="30" type="text" value="" />
+        <input class="text_field" id="owner" name="owner" size="30" type="text" value="<%= @team.owner %>" />
       </div>
     </div>
     <div class="form-actions">

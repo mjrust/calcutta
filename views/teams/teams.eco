@@ -18,14 +18,14 @@
     <tbody>
       <% for team in @teams: %>
         <tr>
-          <td><a href="/team/<%= team._id %>"><%- team.name %></a></td>
+          <td><a href="/teams/<%= team._id %>"><%- team.name %></a></td>
           <td><%- team.region %></td>
           <td><%- team.seed %></td>
           <td><%- team.price %></td>
           <td><%- team.owner %></td>
           <td>
-            <a href="/team/<%= team._id %>/edit" class="btn btn-mini">Edit</a>
-            <a href="/team/<%= team._id %>" class="btn btn-mini btn-danger" data-confirm="Are you sure?" data-method="delete" rel="nofollow">Delete</a>
+            <a href="/teams/<%= team._id %>/edit" class="btn btn-mini">Edit</a>
+            <a href="/teams/<%= team._id %>" class="btn btn-mini btn-danger" data-confirm="Are you sure?" data-method="delete" rel="nofollow">Delete</a>
           </td>
         </tr>
       <% end %>

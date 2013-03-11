@@ -1,5 +1,4 @@
 models = require "../models.coffee"
-forms = require "forms-mongoose"
 
 TeamModel  = models.TeamModel
 
@@ -63,17 +62,19 @@ exports.edit = (req, res) ->
 exports.update = (req, res) ->
   TeamModel.findById req.params.id, (err, team) ->
     team.name = req.body.name
+    team.region = req.body.region
+    team.seed = req.body.seed
+    team.price = req.body.price
     team.owner = req.body.owner
     team.save (err) ->
       if !err
         console.log "updated"
-        res.send "Team with id: #{req.params.id} was updated\n\n"
+        # res.send "Team with id: #{req.params.id} was updated\n\n"
+        res.redirect 'teams'
       else
         console.log "error"
         console.log err
-      # res.send team
-      res.redirect 'teams'
-
+      
 exports.destroy = (req, res) ->
   TeamModel.findById req.params.id, (err, team) ->
     team.remove (err) ->

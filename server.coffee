@@ -21,17 +21,18 @@ app.configure () ->
   app.use express.static(__dirname + '/public')
   app.set 'views', __dirname + '/views'
   app.use express.bodyParser()
+  app.use express.methodOverride()
 
 # app.all '/admin/*', requireAuthentication
 app.get '/', (req, res) ->
   res.render 'index', title: 'Calcutta', name: 'Matt Rust', layout: 'application', nav: 'nav', form: 'form'
 app.get '/teams', team.index
-app.get '/team/:id', team.show
+app.get '/teams/:id', team.show
 app.get '/teams/new', team.new
 app.post '/teams/create', team.create
-app.get '/team/:id/edit', team.edit
-app.put '/team/:id', team.update
-app.del '/team/:id', team.destroy
+app.get '/teams/:id/edit', team.edit
+app.put '/teams/:id', team.update
+app.del '/teams/:id', team.destroy
 
 app.get '/owners', owner.index
 app.get '/owner/:id', owner.show  
