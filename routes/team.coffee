@@ -1,6 +1,7 @@
 models = require "../models.coffee"
 
 TeamModel  = models.TeamModel
+owners = models.OwnerModel
 
 exports.index = (req, res) ->
   TeamModel.find (err, teams) ->
@@ -27,6 +28,7 @@ exports.new = (req, res) ->
     nav: 'nav'
     regions: ["Midwest", "South", "East", "West"]
     seeds: [1..16]
+    owners: ["", "Rust", "Dowd", "Al", "Eugene", "Kyle", "Mac", "Jonathon", "Phil", "Kevin", "Woodburn", "Pete", "Joe"]
     
 exports.create = (req, res) ->
   console.log "POST: "
@@ -41,11 +43,13 @@ exports.create = (req, res) ->
   team.save (err) ->
     if !err
       console.log "created"
+      req.flash 'info', 'Team successfully created!'
+      res.redirect 'teams'
     else
+      req.flash 'error', 'Team was not created due to an error.'
       console.log err
-  # res.send team
-  res.redirect 'teams'
-
+      res.redirect 'teams'
+  
 exports.edit = (req, res) ->
   TeamModel.findById req.params.id, (err, team) ->
     if !err
@@ -55,6 +59,7 @@ exports.edit = (req, res) ->
         nav: 'nav'
         regions: ["Midwest", "South", "East", "West"]
         seeds: [1..16]
+        owners: ["", "Rust", "Dowd", "Al", "Eugene", "Kyle", "Mac", "Jonathon", "Phil", "Kevin", "Woodburn", "Pete", "Joe"]
         team: team
     else
       console.log err
@@ -69,11 +74,13 @@ exports.update = (req, res) ->
     team.save (err) ->
       if !err
         console.log "updated"
+        req.flash 'info', 'Team successfully updated!'
         # res.send "Team with id: #{req.params.id} was updated\n\n"
         res.redirect 'teams'
       else
         console.log "error"
         console.log err
+        res.redirect 'teams'
       
 exports.destroy = (req, res) ->
   TeamModel.findById req.params.id, (err, team) ->

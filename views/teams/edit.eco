@@ -4,7 +4,7 @@
 
   <h3 class="muted"><%= @title %></h3>
 
-  <form action="/teams/<%= @team._id %>" class="form-horizontal" id="new_team" method="post">
+  <form action="/team/<%= @team._id %>" class="form-horizontal" id="new_team" method="post">
     <input type="hidden" name="_method" value="put">
     <div class="control-group">
       <label class="control-label" for="name">Team Name</label>
@@ -49,7 +49,15 @@
     <div class="control-group">
       <label class="control-label" for="owner">Owner</label>
       <div class="controls">
-        <input class="text_field" id="owner" name="owner" size="30" type="text" value="<%= @team.owner %>" />
+        <select id="owner" name="owner">
+          <% for owner in @owners: %>
+            <% if owner == @team.owner: %>
+              <option selected><%= @team.owner %></option>
+            <% else: %>
+              <option><%= owner %></option>
+            <% end %>
+          <% end %>
+        </select>
       </div>
     </div>
     <div class="form-actions">

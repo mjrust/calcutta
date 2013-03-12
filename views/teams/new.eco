@@ -40,7 +40,11 @@
     <div class="control-group">
       <label class="control-label" for="owner">Owner</label>
       <div class="controls">
-        <input class="text_field" id="owner" name="owner" size="30" type="text" value="" />
+        <select id="owner" name="owner">
+          <% for owner in @owners: %>
+            <option><%= owner %></option>
+          <% end %>
+        </select>
       </div>
     </div>
     <div class="form-actions">

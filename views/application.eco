@@ -26,8 +26,15 @@
   </head>
 
   <body>
+    
 
     <div class="container">
+      <% if @message.info: %>
+        <div class="alert alert-success"><%= @message.info %></div>
+      <% else if @message.error: %>
+        <div class="alert alert-error"><%= @message.error %></div>
+      <% end %>
+      
       <%- @body %>
       
       <hr>
@@ -42,6 +49,7 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <%- js("app") %>
 
 
   </body>

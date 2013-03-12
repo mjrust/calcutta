@@ -7,6 +7,7 @@ cons     = require "consolidate"
 partials = require "express-partials"
 team     = require "./routes/team"
 owner    = require "./routes/owner"
+flash    = require "connect-flash"
 app = express()
 
 # Database
@@ -21,26 +22,33 @@ app.configure () ->
   app.use express.static(__dirname + '/public')
   app.set 'views', __dirname + '/views'
   app.use express.bodyParser()
+  app.use express.cookieParser()
+  app.use express.session(secret: 'dsalkfjhsdeuwtyoqweibvcxdfhawueqtoqigkjdahsgfbcmzv', key: 'sid', cookie: maxAge: 60000 )
   app.use express.methodOverride()
+  app.use flash()
+  app.use require('connect-assets')()
+  app.use (req, res, next) ->
+    res.locals.message = req.flash()
+    next()
 
 # app.all '/admin/*', requireAuthentication
 app.get '/', (req, res) ->
   res.render 'index', title: 'Calcutta', name: 'Matt Rust', layout: 'application', nav: 'nav', form: 'form'
 app.get '/teams', team.index
-app.get '/teams/:id', team.show
+app.get '/team/:id', team.show
 app.get '/teams/new', team.new
 app.post '/teams/create', team.create
-app.get '/teams/:id/edit', team.edit
-app.put '/teams/:id', team.update
-app.del '/teams/:id', team.destroy
+app.get '/team/:id/edit', team.edit
+app.put '/team/:id', team.update
+app.del '/team/:id', team.destroy
 
 app.get '/owners', owner.index
-app.get '/owner/:id', owner.show  
-app.get '/owner/name/:name', owner.name
-app.post '/owner', owner.new
-app.get '/owner/:id/edit', owner.edit
-app.put '/owner/:id', owner.update
-app.del '/owner/:id', owner.destroy
+app.get '/owners/:id', owner.show  
+app.get '/owners/name/:name', owner.name
+app.post '/owners/new', owner.new
+app.get '/owners/:id/edit', owner.edit
+app.put '/owners/:id', owner.update
+app.del '/owners/:id', owner.destroy
 
 
 app.listen 3005
