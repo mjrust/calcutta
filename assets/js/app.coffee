@@ -1,6 +1,6 @@
 
 jQuery ->
-  $('.btn-danger').on 'click', (e) ->
+  $('.btn-danger').on 'click', () ->
     path = this.href
     row = $(this).closest("tr").get(0);
     if confirm "Are you sure?"
@@ -10,6 +10,5 @@ jQuery ->
         method: "DELETE"
         success: () ->
           $(row).fadeOut(500)
-          # location.reload()
     
     return false

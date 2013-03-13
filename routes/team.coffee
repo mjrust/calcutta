@@ -75,7 +75,6 @@ exports.update = (req, res) ->
       if !err
         console.log "updated"
         req.flash 'info', 'Team successfully updated!'
-        # res.send "Team with id: #{req.params.id} was updated\n\n"
         res.redirect 'teams'
       else
         console.log "error"

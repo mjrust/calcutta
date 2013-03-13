@@ -43,12 +43,13 @@ app.put '/team/:id', team.update
 app.del '/team/:id', team.destroy
 
 app.get '/owners', owner.index
-app.get '/owners/:id', owner.show  
+app.get '/owner/:id', owner.show  
 app.get '/owners/name/:name', owner.name
-app.post '/owners/new', owner.new
-app.get '/owners/:id/edit', owner.edit
-app.put '/owners/:id', owner.update
-app.del '/owners/:id', owner.destroy
+app.get '/owners/new', owner.new
+app.post '/owners/create', owner.create
+app.get '/owner/:id/edit', owner.edit
+app.put '/owner/:id', owner.update
+app.del '/owner/:id', owner.destroy
 
 
 app.listen 3005

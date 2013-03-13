@@ -1,0 +1,16 @@
+<div class="masthead">
+  <%- @partial(@nav)%>
+</div>
+
+<h3 class="muted">Team <%= @owner.name %></h3>
+
+<div id="owner-detail">
+  <div id="display-points">
+    <p class="<%= @points_style %>"><%= @owner.points %></p>
+  </div>
+  <div id="owned-teams">
+    <ul>
+    
+    </ul>
+  </div>
+</div>

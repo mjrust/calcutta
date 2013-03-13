@@ -3,6 +3,29 @@ body {
   padding-bottom: 60px;
 }
 
+#owner-detail {
+  
+}
+
+#display-points {
+  font-size: 48px;
+}
+
+#display-points.good {
+  color: green;
+}
+
+#display-points.warn {
+  color: yellow;
+}
+
+#display-points.out {
+  color: red;
+}
+
+#owner-teams {
+  
+}
 /* Custom container */
 .container {
   margin: 0 auto;
@@ -37,7 +60,6 @@ body {
 .marketing p + h4 {
   margin-top: 28px;
 }
-
 
 /* Customize the navbar links to be fill the entire space of the .navbar */
 .navbar .navbar-inner {

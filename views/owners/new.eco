@@ -1,0 +1,18 @@
+<div class="masthead">
+  <%- @partial(@nav)%>
+</div>
+
+<h3 class="muted"><%= @title %></h3>
+
+<form action="/owners/create" class="form-horizontal" id="new_owner" method="post">
+  <div class="control-group">
+    <label class="control-label" for="name">Owner Name</label>
+    <div class="controls">
+      <input class="text_field" id="name" name="name" size="30" type="text" value="" />
+    </div>
+  </div>
+  <div class="form-actions">
+    <input class="btn btn-primary" name="commit" type="submit" value="Add an Owner" />
+    <a href="/owners" class="btn">Cancel</a>
+  </div>
+</form>
