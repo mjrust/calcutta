@@ -7,21 +7,10 @@ body {
   
 }
 
-#display-points {
+.display-points {
   font-size: 48px;
 }
 
-#display-points.good {
-  color: green;
-}
-
-#display-points.warn {
-  color: yellow;
-}
-
-#display-points.out {
-  color: red;
-}
 
 #owner-teams {
   

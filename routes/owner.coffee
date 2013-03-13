@@ -6,6 +6,14 @@ teams = models.TeamModel
 exports.index = (req, res) ->
   # res.render 'owners', title: 'Owners', owners: owners
   OwnerModel.find (err, owners) ->
+    for owner in owners
+      if owner.points > 50
+        owner.points_style = 'text-info'
+      else if owner.points < 25
+        owner.points_style = 'text-error'
+      else
+        owner.points_style = 'text-warning'
+        
     if !err
       res.render './owners/owners'
         title: 'The Sirs'
@@ -18,7 +26,6 @@ exports.index = (req, res) ->
 exports.show = (req, res) ->
   OwnerModel.findById req.params.id, (err, owner) ->
     
-      
     if !err
       if owner.points > 50
         points_style = 'text-info'
