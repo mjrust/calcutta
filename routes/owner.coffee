@@ -8,7 +8,7 @@ exports.index = (req, res) ->
   OwnerModel.find (err, owners) ->
     for owner in owners
       if owner.points > 50
-        owner.points_style = 'text-info'
+        owner.points_style = 'text-success'
       else if owner.points < 25
         owner.points_style = 'text-error'
       else

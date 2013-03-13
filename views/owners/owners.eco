@@ -3,23 +3,25 @@
 </div>
 
 <h3 class="muted"><%= @title %></h3>
-
+<div class="row-fluid">
 <% for owner in @owners: %>
-  <div class="owner-detail">
-    <h3><a href="/owner/<%= owner._id %>"><%- owner.name %></a></h3>
+  <div class="span2">
+    <h4 class="sirs-names text-info"><a href="/owner/<%= owner._id %>/edit"><%- owner.name %></a></h3>
     <div class="display-points">
       <p class="<%= owner.points_style %>"><%- owner.points %></p>
     </div>
-    <div class="owned-teams">
-      <ul>
-    
-      </ul>
-    </div>
-    <div>
-      <a href="/owner/<%= owner._id %>/edit" class="btn btn-mini">Edit</a>
-      <a href="/owner/<%= owner._id %>" class="btn btn-mini btn-danger" rel="nofollow">Delete</a>
+    <div class="row-fluid offset2">
+      <div class="span12">
+        <a class="toggle-teams" href="#">View Your Teams</a>
+        <div class="owner-teams">
+          <ol>
+            <li>Team One</li>
+            <li>Team Two</li>
+          </ol>
+        </div>
+      </div>
     </div>
   </div>
 <% end %>
-
+</div>
 

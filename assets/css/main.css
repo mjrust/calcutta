@@ -3,17 +3,23 @@ body {
   padding-bottom: 60px;
 }
 
-#owner-detail {
-  
+h4.sirs-names {
+  font-size: 32px;
+  text-align: center;
 }
 
 .display-points {
-  font-size: 48px;
+  width: 100%;
+  min-height: 110px;
+}
+.display-points p {
+  text-align: center;
+  font-size: 96px;
+  padding: 30px 0 10px 2px;
 }
 
-
-#owner-teams {
-  
+.owner-teams {
+  display: none;
 }
 /* Custom container */
 .container {

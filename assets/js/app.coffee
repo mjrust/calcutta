@@ -1,5 +1,6 @@
 
-jQuery ->
+jQuery ->  
+  
   $('.btn-danger').on 'click', () ->
     path = this.href
     row = $(this).closest("tr").get(0);
@@ -12,3 +13,6 @@ jQuery ->
           $(row).fadeOut(500)
     
     return false
+    
+  $('.toggle-teams').on "click", () ->
+    $(this).popover()
