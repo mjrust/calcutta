@@ -3,7 +3,20 @@ models = require "../models.coffee"
 OwnerModel = models.OwnerModel
 teams = models.TeamModel
 
+# Load configurations
+io       = require "socket.io"
+http     = require "http"
+
+# app = express()
+server = http.createServer()
+io = io.listen(server)
+server.listen 3004
+
+io.sockets.on 'connection', (socket) ->
+  console.log "CONNECTED"
+
 exports.index = (req, res) ->
+  
   OwnerModel.find (err, owners) ->
     for owner in owners
       if owner.points > 50
@@ -83,7 +96,7 @@ exports.update = (req, res) ->
       if !err
         console.log "updated"
         req.flash 'info', 'Owner successfully updated!'
-        res.redirect 'owners'
+        res.redirect 'owners', io.sockets.emit "owner:changed"
       else
         console.log "error"
         console.log err
