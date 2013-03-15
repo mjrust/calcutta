@@ -4,7 +4,7 @@ OwnerModel = models.OwnerModel
 teams = models.TeamModel
 
 exports.index = (req, res) ->
-  # res.render 'owners', title: 'Owners', owners: owners
+  io.sockets.emit "owner:changed"
   OwnerModel.find (err, owners) ->
     for owner in owners
       if owner.points > 50
@@ -20,6 +20,7 @@ exports.index = (req, res) ->
         layout: 'application'
         nav: 'nav'
         owners: owners
+      
     else
       console.log err
 
@@ -79,7 +80,6 @@ exports.update = (req, res) ->
   OwnerModel.findById req.params.id, (err, owner) ->
     owner.name = req.body.name
     owner.points = req.body.points
-
     owner.save (err) ->
       if !err
         console.log "updated"
