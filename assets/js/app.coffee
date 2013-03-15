@@ -5,7 +5,7 @@ jQuery ->
   refresh = ->
     window.location = "/owners"
     
-  socket = io.connect 'http://localhost:3005'
+  socket = io.connect 'http://localhost:3004'
   socket.on 'owner:changed', () ->
     console.log "owner changed"
     refresh()
