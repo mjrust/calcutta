@@ -5,7 +5,6 @@ body {
 
 h4.sirs-names {
   font-size: 32px;
-  text-align: center;
 }
 
 .display-points {
@@ -20,6 +19,13 @@ h4.sirs-names {
 
 .owner-teams {
   display: none;
+}
+
+.owner-tile {
+  background-color: #eee;
+  border: 2px solid #ddd;
+  margin: 2px;
+  border-radius: 10px;
 }
 /* Custom container */
 .container {

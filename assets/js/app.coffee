@@ -15,4 +15,5 @@ jQuery ->
     return false
     
   $('.toggle-teams').on "click", () ->
-    $(this).popover()
+    console.log $(this).parent().siblings('div.owner-teams')
+    $(this).parent().siblings('div.owner-teams').modal()

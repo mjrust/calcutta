@@ -3,22 +3,28 @@
 </div>
 
 <h3 class="muted"><%= @title %></h3>
-<div class="row-fluid">
+<div class="row">
 <% for owner in @owners: %>
-  <div class="span2">
-    <h4 class="sirs-names text-info"><a href="/owner/<%= owner._id %>/edit"><%- owner.name %></a></h3>
+  <div class="span3 owner-tile">
+    <h4 class="sirs-names text-info text-center"><a href="/owner/<%= owner._id %>/edit"><%- owner.name %></a></h3>
     <div class="display-points">
       <p class="<%= owner.points_style %>"><%- owner.points %></p>
     </div>
-    <div class="row-fluid offset2">
-      <div class="span12">
-        <a class="toggle-teams" href="#">View Your Teams</a>
-        <div class="owner-teams">
-          <ol>
-            <li>Team One</li>
-            <li>Team Two</li>
-          </ol>
-        </div>
+    <p class="text-center"><a href="#teamModal" role="button" class="btn btn-primary" data-toggle="modal" class="toggle-teams" href="#">View Your Teams</a></p>
+    <div id="teamModal" class="modal hide fade owner-teams" role="dialog" aria-labelledby="Purchased Teams" aria-hidden="true">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <div class="modal-body">
+            <ol>
+              <% for team in owner.teams:%>
+                <li><%- team %></li>
+              <% end %>
+            </ol>
+          </div>
+          <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+          </div>
+        
       </div>
     </div>
   </div>
