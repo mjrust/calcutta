@@ -8,13 +8,13 @@ partials = require "express-partials"
 team     = require "./routes/team"
 owner    = require "./routes/owner"
 flash    = require "connect-flash"
+io       = require "socket.io"
+http     = require "http"
 
 app = express()
-http = require 'http'
 server = http.createServer(app)
-server.listen 8080
-io = require('socket.io').listen(server)
-module.exports.io = io
+io = require("socket.io").listen(server)
+server.listen 3005
 # Database
 db = mongoose.connect('mongodb://localhost/calcutta')
 
@@ -55,9 +55,9 @@ app.get '/owner/:id/edit', owner.edit
 app.put '/owner/:id', owner.update
 app.del '/owner/:id', owner.destroy
 
+app.listen 3005
+console.log 'Listening on port 3005'
+
 io.sockets.on 'connection', (socket) ->
   console.log "CONNECTED"
   # io.sockets.emit "owner:changed"
-  
-app.listen 3005
-console.log 'Listening on port 3005'

@@ -4,7 +4,6 @@ OwnerModel = models.OwnerModel
 teams = models.TeamModel
 
 exports.index = (req, res) ->
-  io.sockets.emit "owner:changed"
   OwnerModel.find (err, owners) ->
     for owner in owners
       if owner.points > 50
