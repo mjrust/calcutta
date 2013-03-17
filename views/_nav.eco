@@ -12,10 +12,8 @@
       <div class="nav-collapse collapse">
         <!-- .nav, .navbar-search, .navbar-form, etc -->
         <ul class="nav">
-          <li class="active"><a href="#">Home</a></li>
-          <li><a href="/teams">The Field</a></li>
-          <li><a href="/owners">Owners</a></li>
-          <li><a href="/admin">Admin</a></li>
+          <li><a href="/teams">The Tournament Field</a></li>
+          <li><a href="/owners">The Sirs</a></li>
         </ul>
       </div>
     </div>

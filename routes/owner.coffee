@@ -40,24 +40,12 @@ exports.show = (req, res) ->
   OwnerModel.findById req.params.id, (err, owner) ->
     
     if !err
-      if owner.points > 50
-        points_style = 'text-info'
-      else if owner.points < 25
-        points_style = 'text-error'
-      else
-        points_style = 'text-warning'
-        
-      res.render './owners/show'
-        layout: 'application'
-        nav: 'nav'
-        owner: owner
-        points_style: points_style
-        
+      res.send owner  
     else
       console.log err
 
 exports.new = (req, res) ->
-  res.render './owners/new'
+  res.render './owners/new_owner'
     title: 'Add an owner'
     layout: 'application'
     nav: 'nav'
@@ -80,7 +68,7 @@ exports.create = (req, res) ->
 exports.edit = (req, res) ->
   OwnerModel.findById req.params.id, (err, owner) ->
     if !err
-      res.render './owners/edit'
+      res.render './owners/edit_owner'
         title: 'Edit owner'
         layout: 'application'
         nav: 'nav'

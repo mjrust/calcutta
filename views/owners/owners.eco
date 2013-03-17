@@ -10,24 +10,13 @@
     <div class="display-points">
       <p class="<%= owner.points_style %>"><%- owner.points %></p>
     </div>
-    <p class="text-center"><a href="#teamModal" role="button" class="btn btn-primary" data-toggle="modal" class="toggle-teams" href="#">View Your Teams</a></p>
-    <div id="teamModal" class="modal hide fade owner-teams" role="dialog" aria-labelledby="Purchased Teams" aria-hidden="true">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-          <div class="modal-body">
-            <ol>
-              <% for team in owner.teams:%>
-                <li><%- team %></li>
-              <% end %>
-            </ol>
-          </div>
-          <div class="modal-footer">
-            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-          </div>
-        
-      </div>
-    </div>
+    <p class="text-center admin_buttons">
+      <a href="/owner/<%= owner._id %>/edit" class="btn btn-mini">Edit</a>
+      <a href="/owner/<%= owner._id %>" class="btn btn-mini btn-danger delete-owner" rel="nofollow">Delete</a>
+    </p>
   </div>
 <% end %>
 </div>
+
+<p class="admin_buttons"><a href="/owners/new" class="btn btn-primary">Add Owner</a></p>
 

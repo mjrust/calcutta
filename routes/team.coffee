@@ -1,16 +1,19 @@
 models = require "../models.coffee"
 
 TeamModel  = models.TeamModel
-owners = models.OwnerModel
+OwnerModel = models.OwnerModel
+
 
 exports.index = (req, res) ->
   TeamModel.find (err, teams) ->
     if !err
-      res.render './teams/teams'
-        title: 'NCAA Tournament Teams'
-        layout: 'application'
-        nav: 'nav'
-        teams: teams
+      OwnerModel.find (err, owners) ->
+        res.render './teams/teams'
+          title: 'NCAA Tournament Teams'
+          layout: 'application'
+          nav: 'nav'
+          teams: teams
+          owners: owners
     else
       console.log err
               
@@ -22,13 +25,14 @@ exports.show = (req, res) ->
       console.log err
 
 exports.new = (req, res) ->
-  res.render './teams/new'
-    title: 'Add a team'
-    layout: 'application'
-    nav: 'nav'
-    regions: ["Midwest", "South", "East", "West"]
-    seeds: [1..16]
-    owners: ["", "Rust", "Dowd", "Al", "Eugene", "Kyle", "Mac", "Jonathon", "Phil", "Kevin", "Woodburn", "Pete", "Joe"]
+  OwnerModel.find (err, owners) ->
+    res.render './teams/new_team'
+      title: 'Add a team'
+      layout: 'application'
+      nav: 'nav'
+      regions: ["Midwest", "South", "East", "West"]
+      seeds: [1..16]
+      owners: owners
     
 exports.create = (req, res) ->
   console.log "POST: "
@@ -53,14 +57,15 @@ exports.create = (req, res) ->
 exports.edit = (req, res) ->
   TeamModel.findById req.params.id, (err, team) ->
     if !err
-      res.render './teams/edit'
-        title: 'Edit team'
-        layout: 'application'
-        nav: 'nav'
-        regions: ["Midwest", "South", "East", "West"]
-        seeds: [1..16]
-        owners: ["", "Rust", "Dowd", "Al", "Eugene", "Kyle", "Mac", "Jonathon", "Phil", "Kevin", "Woodburn", "Pete", "Joe"]
-        team: team
+      OwnerModel.find (e, owners) ->
+        res.render './teams/edit_team'
+          title: 'Edit team'
+          layout: 'application'
+          nav: 'nav'
+          regions: ["Midwest", "South", "East", "West"]
+          seeds: [1..16]
+          owners: owners
+          team: team
     else
       console.log err
       

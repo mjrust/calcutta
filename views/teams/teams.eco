@@ -12,22 +12,24 @@
         <th>Seed</th>
         <th>Purchase Price</th>
         <th>Owner</th>
-        <th>Actions</th>
+        <th class="admin_buttons">Actions</th>
       </tr>
     </thead>
     <tbody>
       <% for team in @teams: %>
         <tr>
-          <td><a href="/teams/<%= team._id %>"><%- team.name %></a></td>
+          <td><%- team.name %></td>
           <td><%- team.region %></td>
           <td><%- team.seed %></td>
           <td><%- team.price %></td>
           <td><%- team.owner %></td>
-          <td>
+          <td class="admin_buttons">
             <a href="/team/<%= team._id %>/edit" class="btn btn-mini">Edit</a>
-            <a href="/team/<%= team._id %>" class="btn btn-mini btn-danger" rel="nofollow">Delete</a>
+            <a href="/team/<%= team._id %>" class="btn btn-mini btn-danger delete-team" rel="nofollow">Delete</a>
           </td>
         </tr>
       <% end %>
     </tbody>
   </table>
+  
+  <p class="admin_buttons"><a href="/teams/new" class="btn btn-primary">Add Team</a></p>

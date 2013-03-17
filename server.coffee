@@ -11,7 +11,6 @@ flash    = require "connect-flash"
 
 app = express()
 
-
 # Database
 db = mongoose.connect('mongodb://localhost/calcutta')
 
